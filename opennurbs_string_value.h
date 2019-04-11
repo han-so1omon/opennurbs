@@ -274,7 +274,8 @@ private:
 class ON_CLASS ON_AngleValue
 {
 public:
-  ON_AngleValue() = default;
+  //ON_AngleValue() = default;
+  ON_AngleValue(){};
   ~ON_AngleValue() = default;
   ON_AngleValue(const ON_AngleValue&) = default;
   ON_AngleValue& operator=(const ON_AngleValue&) = default;

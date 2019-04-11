@@ -1,1 +1,10 @@
 *.o
+*.a
+*.bak
+*.3dm
+example_brep
+example_convert
+example_read
+example_userdata
+example_write
+example_test

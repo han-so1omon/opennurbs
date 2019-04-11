@@ -16,6 +16,10 @@
 
 #include "opennurbs.h"
 
+#if defined(ON_COMPILER_GNU)
+#include <uuid/uuid.h>
+#endif
+
 #if !defined(ON_COMPILING_OPENNURBS)
 // This check is included in all opennurbs source .c and .cpp files to insure
 // ON_COMPILING_OPENNURBS is defined when opennurbs source is compiled.
@@ -175,7 +179,7 @@ bool ON_CreateUuid( ON_UUID& new_uuid )
                                        // identifies the user and some
                                        // customers may object.
   return true;
-#elif defined(ON_COMPILER_CLANG)
+#elif defined(ON_COMPILER_CLANG) || defined(ON_COMPILER_GNU)
   // Header: #include <uuid/uuid.h>
   if ( ON::endian::little_endian == ON::Endian() )
   {

@@ -1631,7 +1631,7 @@ private:
 class ON_CLASS ONX_ModelTest
 {
 public:
-  ONX_ModelTest() = default;
+  ONX_ModelTest(){};
   ~ONX_ModelTest() = default;
   ONX_ModelTest(const ONX_ModelTest&) = default;
   ONX_ModelTest& operator=(const ONX_ModelTest&) = default;

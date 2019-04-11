@@ -55,10 +55,15 @@
 #define ON_RUNTIME_ANDROID
 #endif
 
+#else
+#if !defined(ON_RUNTIME_OTHER)
+#define ON_RUNTIME_OTHER
+#endif
+
 #endif
 /*
 //
-// END - ON_RUNTIME_APPLE / ON_RUNTIME_WIN / ON_RUNTIME_ANDROID defines
+// END - ON_RUNTIME_APPLE / ON_RUNTIME_WIN / ON_RUNTIME_ANDROID // ON_RUNTIME_OTHER defines
 //
 ////////////////////////////////////////////////////////////
 */
@@ -148,6 +153,17 @@
 
 #if !defined(ON_SIZEOF_WCHAR_T)
 #define ON_SIZEOF_WCHAR_T 4
+#endif
+
+#elif defined(ON_RUNTIME_OTHER)
+#if !defined(ON_SIZEOF_WCHAR_T)
+#define ON_SIZEOF_WCHAR_T __SIZEOF_WCHAR_T__
+#endif
+#include <endian.h>
+#ifdef __BIG_ENDIAN
+#define ON_BIG_ENDIAN
+#else
+#define ON_LITTLE_ENDIAN
 #endif
 
 #endif

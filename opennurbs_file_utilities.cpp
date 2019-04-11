@@ -2634,6 +2634,13 @@ ON__UINT64 ON_SecondsSinceJanOne1970UTC()
   time_t t = time(nullptr);
   return (ON__UINT64)t;
 
+#elif defined(ON_COMPILER_GNU)
+
+  //__time64_t t = _time64(nullptr);
+  time_t t = time(nullptr);
+  return (ON__UINT64)t;
+
+
 #else
 
   __time64_t t = _time64(nullptr);
@@ -2669,6 +2676,21 @@ const ON_wString SecondsSinceJanOne1970UTCToString(
   }
 
 #elif defined(ON_COMPILER_CLANG)
+
+  const time_t t = (time_t)seconds_since_epoch;
+  const struct tm* ptr = gmtime( &t );
+  if (nullptr != ptr)
+  {
+    const struct tm uct = *ptr;
+    year = uct.tm_year;
+    month = uct.tm_mon;
+    mday = uct.tm_mday;
+    hour = uct.tm_hour;
+    min = uct.tm_min;
+    sec = uct.tm_sec;
+  }
+
+#elif defined(ON_COMPILER_GNU)
 
   const time_t t = (time_t)seconds_since_epoch;
   const struct tm* ptr = gmtime( &t );

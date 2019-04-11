@@ -660,7 +660,10 @@ bool ON_SubD_FixedSizeHeap::ReturnPtrArray(
     m_p_index -= capacity;
     return true;
   }
-  return ON_SUBD_RETURN_ERROR(nullptr);
+  // Necessary via GNU std 7.14/1 Boolean conversions
+  // [conv.bool]
+  bool ret {nullptr};
+  return ON_SUBD_RETURN_ERROR(ret);
 }
 
 
